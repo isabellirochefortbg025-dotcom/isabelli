@@ -1,0 +1,36 @@
+<%-include('../cabecalho.ejs')%>
+  <header>
+    <h3>Editar sessao</h3>
+  </header>
+  <div class="content">
+    <form id="form-sessao" method="post" autocomplete="off">
+      <div class="grid">
+        <div>
+          <label for="nome">ID da sessao</label>
+          <input id="id" value="<%=sessao.id%>" name="id" type="text" placeholder="Ex:Gope" required>
+        </div>
+        <div>
+          <label for="nome">Nome da sala/label>
+          <input id="sala" value="<%=sessao.sala%>" name="sala" type="text" placeholder="Ex:202" required>
+        </div>
+         <div>
+          <label for="nome">Nome do filme_titulo</label>
+          <input id="filme_titulo" value="<%=sessao.filme_titulo%>" name="filme_titulo" type="text" placeholder="Ex:a morte te da parabens" required>
+        </div>
+         <div>
+          <label for="nome">preco</label>
+          <input id="preco" value="<%=sessao.preco%>" name="preco" type="text" placeholder="Ex:Motorola" required>
+        </div>
+        <div>
+          <label for="nome">data_hora</label>
+          <input id="data_hora" value="<%=sessao.data_hora%>" name="data_hora" type="text" placeholder="Ex:Motorola" required>
+        </div>
+        <div class="field-help">Os campos com * são obrigatórios.</div>
+        <footer>
+          <a type="button" class="btn ghost" id="btn-cancelar" href="/sessao/lst">Cancelar</a>
+          <button type="submit" class="btn primary">Editar sessao</button>
+        </footer>
+    </form>
+  </div>
+
+  <%-include('../rodape.ejs')%>

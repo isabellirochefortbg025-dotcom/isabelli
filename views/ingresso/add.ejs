@@ -1,0 +1,33 @@
+<%-include('../cabecalho.ejs')%>
+  <header>
+    <h3>Adicionar Novo ingresso</h3>
+  </header>
+  <div class="content">
+    <form id="form-ingresso" autocomplete="off" action="/ingresso/add/ok" method="post">
+      <div class="grid">
+        <div>
+          <label for="assento">assento</label>
+          <input id="assento" name="assento" type="text" placeholder="Ex: 32" required>
+        </div>
+        <div>
+          <label for="nome_comprador">Nome do comprador</label>
+          <input id="nome_comprador" name="nome_comprador" type="text" placeholder="Digite o nome do comprador " required>
+        </div>
+        <div>
+          <label for="numero_ingresso">Numero do ingresso</label>
+          <input id="numero_ingresso" name="numero_ingresso" type="text" placeholder="Ex: 500" required>
+        </div>
+        <div>
+          <label for="valor">valor</label>
+          <input id="valor" name="valor" type="number" placeholder="0" min="0" step="0.01" required>
+        </div>
+      </div>
+
+      <footer>
+        <a type="button" class="btn ghost" id="btn-cancelar" href="/ingresso/lst">Cancelar</a>
+        <button type="submit" class="btn primary">Adicionar ingresso</button>
+      </footer>
+    </form>
+  </div>
+
+  <%-include('../rodape.ejs')%>

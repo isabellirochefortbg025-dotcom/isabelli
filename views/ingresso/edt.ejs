@@ -1,0 +1,36 @@
+<%-include('../cabecalho.ejs')%>
+  <header>
+    <h3>Editar ingresso</h3>
+  </header>
+  <div class="content">
+    <form id="form-ingresso" method="post" autocomplete="off">
+      <div class="grid">
+        <div>
+          <label for="nome">ID do ingresso</label>
+          <input id="id" value="<%=ingresso.id%>" name="id" type="text" placeholder="Ex:Gope" required>
+        </div>
+        <div>
+          <label for="nome">assento</label>
+          <input id="assento" value="<%=ingresso.assento%>" name="assento" type="text" placeholder="Ex:Gope" required>
+        </div>
+        <div>
+          <label for="nome">nome do comprador</label>
+          <input id="nome_comprador" value="<%=ingresso.nome_comprador%>" name="nome_comprador" type="text" placeholder="Ex:Gope" required>
+        </div>
+        <div>
+          <label for="nome">numero do ingresso</label>
+          <input id="numero_ingresso" value="<%=ingresso.numero_ingresso%>" name="numero_ingresso" type="text" placeholder="Ex:Gope" required>
+        </div>
+        <div>
+          <label for="nome">cvalor do ingresso</label>
+          <input id="valor" value="<%=ingresso.valor%>" name="valor" type="text" placeholder="Ex:Gope" required>
+        </div>
+        <div class="field-help">Os campos com * são obrigatórios.</div>
+        <footer>
+          <a type="button" class="btn ghost" id="btn-cancelar" href="/ingresso/lst">Cancelar</a>
+          <button type="submit" class="btn primary">Editar ingresso</button>
+        </footer>
+    </form>
+  </div>
+
+  <%-include('../rodape.ejs')%>

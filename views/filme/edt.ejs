@@ -1,0 +1,36 @@
+<%-include('../cabecalho.ejs')%>
+  <header>
+    <h3>Editar filme</h3>
+  </header>
+  <div class="content">
+    <form id="form-filme" method="post" autocomplete="off">
+      <div class="grid">
+        <div>
+          <label for="nome">ID do filme</label>
+          <input id="id" value="<%=filme.id%>" name="id" type="text" placeholder="Ex:Gope" required>
+        </div>
+        <div>
+          <label for="nome">Titulo do filme</label>
+          <input id="titulo" value="<%=filme.titulo%>" name="titulo" type="text" placeholder="Ex:Gope" required>
+        </div>
+        <div>
+          <label for="nome">Duração do filme</label>
+          <input id="duracao" value="<%=filme.duracao%>" name="duracao" type="text" placeholder="Ex:Gope" required>
+        </div>
+        <div>
+          <label for="nome">Genero do filme</label>
+          <input id="genero" value="<%=filme.genero%>" name="genero" type="text" placeholder="Ex:Gope" required>
+        </div>
+        <div>
+          <label for="nome">classificação do filme</label>
+          <input id="classificacao" value="<%=filme.classificacao%>" name="classificacao" type="text" placeholder="Ex:Gope" required>
+        </div>
+        <div class="field-help">Os campos com * são obrigatórios.</div>
+        <footer>
+          <a type="button" class="btn ghost" id="btn-cancelar" href="/filme/lst">Cancelar</a>
+          <button type="submit" class="btn primary">Editar filme</button>
+        </footer>
+    </form>
+  </div>
+
+  <%-include('../rodape.ejs')%>

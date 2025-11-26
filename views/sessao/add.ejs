@@ -1,0 +1,33 @@
+<%-include('../cabecalho.ejs')%>
+  <header>
+    <h3>Adicionar Nova sessao</h3>
+  </header>
+  <div class="content">
+    <form id="form-sessao" autocomplete="off" action="/sessao/add/ok" method="post">
+      <div class="grid">
+        <div>
+          <label for="sala">sala</label>
+          <input id="sala" name="sala" type="text" placeholder="Ex: 202" required>
+        </div>
+        <div>
+          <label for="data_hora">data_hora</label>
+          <input id="data_hora" name="data_hora" type="datetime-local" placeholder="Digite a data" required>
+        </div>
+        <div>
+          <label for="filme_titulo">filme_titulo</label>
+          <input id="filme_titulo" name="filme_titulo" type="text" placeholder="Ex: terror" required>
+        </div>
+        <div>
+          <label for="preco">preco</label>
+          <input id="preco" name="preco" type="number" placeholder="0" min="0" step="0.01" required>
+        </div>
+      </div>
+
+      <footer>
+        <a type="button" class="btn ghost" id="btn-cancelar" href="/sessao/lst">Cancelar</a>
+        <button type="submit" class="btn primary">Adicionar sessao</button>
+      </footer>
+    </form>
+  </div>
+
+  <%-include('../rodape.ejs')%>

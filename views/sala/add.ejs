@@ -1,0 +1,27 @@
+<%-include('../cabecalho.ejs')%>
+  <header>
+    <h3>Adicionar Nova sala</h3>
+  </header>
+  <div class="content">
+    <form id="form-sala" autocomplete="off" action="/sala/add/ok" method="post">
+      <div class="grid">
+        <div>
+          <label for="numero">numero</label>
+          <input id="numero" name="numero" type="text" placeholder="Ex: 32" required>
+        </div>
+        <div>
+          <label for="capacidade">capacidade</label>
+          <input id="capacidade" name="capacidade" type="text" placeholder="Digite a quantidade de pessoas" required>
+        </div>
+        <div>
+          <label for="tipo">tipo</label>
+          <input id="tipo" name="tipo" type="text" placeholder="Ex: 2D/3D" required>
+        </div>
+      <footer>
+        <a type="button" class="btn ghost" id="btn-cancelar" href="/sala/lst">Cancelar</a>
+        <button type="submit" class="btn primary">Adicionar sala</button>
+      </footer>
+    </form>
+  </div>
+
+  <%-include('../rodape.ejs')%>
