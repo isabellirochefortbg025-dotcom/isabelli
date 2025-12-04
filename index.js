@@ -248,5 +248,18 @@ const ingresso = await Ingresso.findByIdAndUpdate(req.params.id, req.body)
 res.render("ingresso/edtok")
 });
 
+//site
+
+app.get('/site',async (req,res)=> {
+    const filmes= await Filme.find()
+    const sessoes= await Sessao.find()
+    const ingressos= await Ingresso.find()
+    const salas= await Sala.find()
+
+
+res.render("site/index",{filmes,sessoes,ingressos,salas})
+})
+
 //fim ingresso
 app.listen(3002)
+

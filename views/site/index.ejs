@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CineMax - Sistema de Gerenciamento de Cinema</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e1b4b 0%, #581c87 50%, #1e1b4b 100%);
+            color: #fff;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(168, 85, 247, 0.2);
+            padding: 30px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #a78bfa;
+        }
+
+        .header-text h1 {
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .header-text p {
+            font-size: 14px;
+            color: #c4b5fd;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            margin-bottom: 60px;
+        }
+
+        .hero img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(0,0,0,0.8), transparent);
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            padding: 0 40px;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #e9d5ff;
+            max-width: 600px;
+        }
+
+        /* Sections */
+        section {
+            margin-bottom: 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .section-icon {
+            font-size: 36px;
+            color: #a78bfa;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 5px;
+        }
+
+        .section-title p {
+            font-size: 14px;
+            color: #c4b5fd;
+        }
+
+        /* Grid Layouts */
+        .grid-filmes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .grid-sessoes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-ingressos {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .grid-salas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 30px;
+        }
+
+        /* Cards - Filmes */
+        .card-filme {
+            background: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+
+        .card-filme:hover {
+            transform: scale(1.05);
+        }
+
+        .filme-poster {
+            width: 100%;
+            aspect-ratio: 2/3;
+            object-fit: cover;
+            position: relative;
+        }
+
+        .filme-poster-container {
+            position: relative;
+        }
+
+        .filme-classificacao {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #7c3aed;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .filme-info {
+            padding: 20px;
+        }
+
+        .filme-titulo {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .filme-detalhes {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            font-size: 14px;
+            color: #c4b5fd;
+        }
+
+        .filme-detalhe-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+       /* Cards - Sessões */
+.card-sessao {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(88, 28, 135, 0.4) 100%);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(168, 85, 247, 0.3);
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.card-sessao:hover {
+    border-color: rgba(168, 85, 247, 0.6);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+}
+
+/* Título da Sessão */
+.sessao-filme {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #e0d7ff;
+}
+
+/* Detalhes da Sessão */
+.sessao-detalhes {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.sessao-detalhe-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: #d8b4fe;
+}
+
+/* Footer da Sessão */
+.sessao-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 18px;
+    border-top: 1px solid rgba(168, 85, 247, 0.25);
+}
+
+/* Preço da Sessão */
+.sessao-preco {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #d8b4fe;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Badge */
+.badge {
+    padding: 5px 14px;
+    border-radius: 16px;
+    font-size: 12px;
+    border: 1px solid #c084fc;
+    color: #e0d7ff;
+    background: rgba(168, 85, 247, 0.1);
+    transition: all 0.2s ease;
+}
+
+.badge:hover {
+    background: rgba(168, 85, 247, 0.25);
+    border-color: #c084fc;
+    cursor: pointer;
+}
+
+        /* Cards - Ingressos */
+        .card-ingresso {
+            background: linear-gradient(135deg, rgba(88, 28, 135, 0.4) 0%, rgba(30, 41, 59, 0.6) 100%);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 12px;
+            padding: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-ingresso::before,
+        .card-ingresso::after {
+            content: '';
+            position: absolute;
+            background: rgba(168, 85, 247, 0.1);
+            border-radius: 50%;
+        }
+
+        .card-ingresso::before {
+            width: 120px;
+            height: 120px;
+            top: -60px;
+            right: -60px;
+        }
+
+        .card-ingresso::after {
+            width: 80px;
+            height: 80px;
+            bottom: -40px;
+            left: -40px;
+        }
+
+        .ingresso-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ingresso-filme {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .ingresso-horario {
+            background: #7c3aed;
+            padding: 5px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+
+        .ingresso-detalhes {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .ingresso-detalhe-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .ingresso-detalhe-icon {
+            color: #a78bfa;
+            font-size: 20px;
+        }
+
+        .ingresso-detalhe-texto {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .ingresso-label {
+            font-size: 11px;
+            color: #a78bfa;
+            margin-bottom: 2px;
+        }
+
+        .ingresso-valor-texto {
+            font-size: 14px;
+            color: #e9d5ff;
+        }
+
+        .ingresso-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(168, 85, 247, 0.3);
+            position: relative;
+            z-index: 1;
+        }
+
+        .ingresso-preco {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #e9d5ff;
+        }
+
+        .badge-confirmado {
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            border: 1px solid #4ade80;
+            color: #4ade80;
+        }
+
+ /* GRID */
+.grid-salas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 40px;
+}
+
+/* CARD */
+.card-sala {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 22px 28px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(4px);
+    transition: 0.2s ease;
+}
+
+.card-sala:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-3px);
+}
+
+/* TOPO DO CARD */
+.sala-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sala-numero {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: white;
+}
+
+/* Ícone + capacidade */
+.sala-capacidade {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: #4db4ff;
+    font-size: 1.1rem;
+}
+
+/* DIVISOR */
+.sala-divider {
+    height: 1px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.12);
+    margin: 16px 0;
+}
+
+/* STATS */
+.sala-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+}
+
+.sala-stat-label {
+    font-size: 0.85rem;
+    opacity: 0.75;
+    color: white;
+}
+
+.sala-stat-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 3px;
+    color: #ffffff;
+}
+
+
+
+        /* Footer */
+        footer {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(168, 85, 247, 0.2);
+            margin-top: 80px;
+            padding: 50px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3,
+        .footer-section h4 {
+            margin-bottom: 15px;
+        }
+
+        .footer-section p {
+            font-size: 14px;
+            color: #c4b5fd;
+            line-height: 1.8;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(168, 85, 247, 0.2);
+        }
+
+        .footer-bottom p {
+            font-size: 14px;
+            color: #a78bfa;
+        }
+
+        /* Icons (usando símbolos Unicode) */
+        .icon {
+            display: inline-block;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 32px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            .section-title h2 {
+                font-size: 28px;
+            }
+
+            .grid-filmes,
+            .grid-sessoes,
+            .grid-ingressos,
+            .grid-salas {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">🎬</div>
+                <div class="header-text">
+                    <h1>CineMax</h1>
+                    <p>Sistema de Gerenciamento de Cinema</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <img src="https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/02/cinema.jpg?w=1200&h=900&crop=0">
+        <div class="hero-overlay">
+            <div class="hero-content">
+                <h2>Bem-vindo ao CineMax</h2>
+                <p>Explore nossa programação completa, salas de cinema, sessões disponíveis e seus ingressos reservados.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        
+        <!-- SEÇÃO: FILMES -->
+        <section id="filmes">
+            <div class="section-header">
+                <div class="section-icon">🎥</div>
+                <div class="section-title">
+                    <h2>Filmes em Cartaz</h2>
+                    <p>Confira os filmes disponíveis</p>
+                </div>
+            </div>
+
+            <div class="grid-filmes">
+                <!-- Filme 1 -->
+<%filmes.forEach(filme=>{%>                     
+    <div class="card-filme">
+                    <div class="filme-poster-container">
+                        <img class="filme-poster" src="<%=filme.foto%>" alt="A Grande Aventura">
+                        <div class="filme-classificacao"><%=filme.classificacao%></div>
+                    </div>
+                    <div class="filme-info">
+                        <div class="filme-titulo"><%=filme.titulo%></div>
+                        <div class="filme-detalhes">
+                            <div class="filme.duracao">
+                                <span class="icon">⏱️</span>
+                                <span><%=filme.duracao%></span>
+                            </div>
+                            <div class="filme.genero">
+                                <span class="icon">🏷️</span>
+                                <span><%=filme.genero%></span>
+                            </div>
+                            <div class="filme.classificacao">
+                                <span class="icon">⭐</span>
+                                <span><%=filme.classificacao%></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <%})%>
+        </section>
+
+        <!-- SEÇÃO: SESSÕES -->
+        <section id="sessoes">
+            <div class="section-header">
+                <div class="section-icon">📅</div>
+                <div class="section-title">
+                    <h2>Sessões Disponíveis</h2>
+                    <p>Horários e salas para hoje</p>
+                </div>
+            </div>
+
+            <div class="grid-sessoes">
+                <!-- Sessão 1 -->
+<%sessoes.forEach(sessao => { %>
+
+                <div class="card-sessao">
+                    <div class="sessao-filme_titulo">
+                        <span>🎬</span>
+                        <span><%=sessao.filme_titulo%></span>
+                    </div>
+                    <div class="sessao-detalhes">
+                        <div class="sessao.sala">
+                            <span class="icon">📍</span>
+                            <span> <%=sessao.sala%></span>
+                        </div>
+                        <div class="sessao-data_hora">
+                            <span class="icon">📅</span>
+                            <span><%=sessao.data_hora%></span>
+                        </div>
+                    </div>
+                    <div class="sessao-footer">
+                        <div class="sessao.preco">
+                            <span>💲</span>
+                            <span><%=sessao.preco%></span>
+                        </div>
+                        <div class="badge">Disponível</div>
+                    </div>
+                </div>
+                <%})%>
+        </section>
+
+        <!-- SEÇÃO: INGRESSOS -->
+        <section id="ingressos">
+            <div class="section-header">
+                <div class="section-icon">🎟️</div>
+                <div class="section-title">
+                    <h2>Ingressos Emitidos</h2>
+                    <p>Reservas confirmadas</p>
+                </div>
+            </div>
+
+          <div class="grid-ingressos">
+    <% ingressos.forEach(ingresso => { %>
+    <div class="card-ingressos">
+        
+        <div class="ingresso-header">
+            <div class="ingresso-horario"><%= ingresso.horario %></div>
+        </div>
+
+        <div class="ingresso-detalhes">
+
+            <div class="ingresso-detalhe-item">
+                <div class="ingresso-detalhe-icon">#️⃣</div>
+                <div class="numero_ingresso">
+                    <div class="ingresso-label">Número</div>
+                    <div class="ingresso-valor-texto"><%=ingresso.numero_ingresso %></div>
+                </div>
+            </div>
+
+            <div class="ingresso-detalhe-item">
+                <div class="ingresso-detalhe-icon">👤</div>
+                <div class="ingresso-comprador">
+                    <div class="ingresso-label">Comprador</div>
+                    <div class="ingresso-valor-texto"><%= ingresso.nome_comprador %></div>
+                </div>
+            </div>
+
+            <div class="ingresso-detalhe-item">
+                <div class="ingresso-detalhe-icon">💺</div>
+                <div class="ingresso-assento">
+                    <div class="ingresso-label">Assento</div>
+                    <div class="ingresso-valor-texto"><%= ingresso.assento %></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="ingresso-footer">
+            <div class="ingresso-preco">
+                <span>💲</span>
+                <span><%= ingresso.valor %></span>
+            </div>
+            <div class="badge-confirmado">Confirmado</div>
+        </div>
+
+    </div>
+    <% }) %>
+</div>
+        </section>
+
+ 
+
+        <!-- SEÇÃO: SALAS -->
+        <section id="salas">
+            <div class="section-header">
+                <div class="section-icon">🚪</div>
+                <div class="section-title">
+                    <h2>Nossas Salas</h2>
+                    <p>Conheça nossos espaços</p>
+                </div>
+            </div>
+
+           <div class="grid-salas">
+    <% salas.forEach(sala => { %>
+    <div class="card-sala">
+        <div class="sala-content">
+
+            <div class="sala-header">
+                <div class="sala-numero"><%= sala.numero %></div>
+                <div class="sala-capacidade">
+                    <span>👥</span>
+                    <span><%= sala.capacidade %></span>
+                </div>
+            </div>
+
+            <div class="sala-stats">
+
+                <div>
+                    <div class="sala-stat-label">Capacidade</div>
+                    <div class="sala-stat-value"><%= sala.capacidade %></div>
+                </div>
+
+                <div>
+                    <div class="sala-stat-label">Tipo</div>
+                    <div class="sala-stat-value"><%= sala.tipo %></div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <% }) %>
+</div>
+</section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>CineMax</h3>
+                    <p>A melhor experiência em cinema com tecnologia de ponta e conforto incomparável.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <p>Email: cinemamax15@gmail.com.br</p>
+                    <p>Tel: (53) 991457667</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Horário de Funcionamento</h4>
+                    <p>Segunda a Sabado</p>
+                    <p>10:00 - 22:00</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2025 CineMax. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
