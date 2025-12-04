@@ -13,10 +13,10 @@ app.set('view engine', 'ejs');
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 // COLOCAR OS MODELS AQUI (colocar o caminho ../)
-import Filme from '../models/filme.js';
-import Sessao from '../models/sessao.js';
-import Sala from '../models/sala.js';
-import Ingresso from '../models/ingresso.js';
+import Filme from './models/filme.js';
+import Sessao from './models/sessao.js';
+import Sala from './models/sala.js';
+import Ingresso from './models/ingresso.js';
 
 
 //FIM MODELS
@@ -269,6 +269,6 @@ res.render("site/index",{filmes,sessoes,ingressos,salas})
 
 
 //FIM ROTAS
-app.listen(3001)
+app.listen(3002)
 // Exporta o handler compatível com Vercel
 export default app;
