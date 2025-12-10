@@ -25,13 +25,7 @@ import Ingresso from '../models/ingresso.js';
 //app.use(express.static(join(__dirname, '../public')));
 app.set('views', join(__dirname, '../views'));
 
-// Rotas
-import multer from 'multer';
 
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
-
-// COLOCAR AS ROTAS AQUI
 //rotas
 app.get('/', (req, res) => {
     res.render("index")
@@ -265,8 +259,6 @@ app.get('/site',async (req,res)=> {
 
 res.render("site/index",{filmes,sessoes,ingressos,salas})
 })
-
-
 
 //FIM ROTAS
 app.listen(3002)
