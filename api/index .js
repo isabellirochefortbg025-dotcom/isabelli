@@ -19,12 +19,20 @@ import Sala from '../models/sala.js';
 import Ingresso from '../models/ingresso.js';
 
 
+
 //FIM MODELS
 
 // Servir arquivos estáticos
 //app.use(express.static(join(__dirname, '../public')));
 app.set('views', join(__dirname, '../views'));
 
+// Rotas
+import multer from 'multer';
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage });
+
+// COLOCAR AS ROTAS AQUI
 
 //rotas
 app.get('/', (req, res) => {
@@ -260,7 +268,8 @@ app.get('/site',async (req,res)=> {
 res.render("site/index",{filmes,sessoes,ingressos,salas})
 })
 
+
 //FIM ROTAS
-app.listen(3002)
+app.listen(3001)
 // Exporta o handler compatível com Vercel
 export default app;
