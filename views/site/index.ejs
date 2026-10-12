@@ -29,13 +29,21 @@
             background: rgba(0, 0, 0, 0.6);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid rgba(168, 85, 247, 0.2);
-            padding: 30px 0;
+            padding: 20px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
         }
 
         .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header-left {
             display: flex;
             align-items: center;
             gap: 15px;
@@ -55,6 +63,31 @@
         .header-text p {
             font-size: 14px;
             color: #c4b5fd;
+        }
+
+        /* Botões de Navegação / Gerenciamento */
+        .admin-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-admin {
+            background: #7c3aed;
+            color: #fff;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            border: 1px solid rgba(168, 85, 247, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .btn-admin:hover {
+            background: #6d28d9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
         }
 
         /* Hero Section */
@@ -145,8 +178,9 @@
 
         .grid-salas {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
         }
 
         /* Cards - Filmes */
@@ -163,15 +197,14 @@
             transform: scale(1.05);
         }
 
+        .filme-poster-container {
+            position: relative;
+        }
+
         .filme-poster {
             width: 100%;
             aspect-ratio: 2/3;
             object-fit: cover;
-            position: relative;
-        }
-
-        .filme-poster-container {
-            position: relative;
         }
 
         .filme-classificacao {
@@ -203,91 +236,63 @@
             color: #c4b5fd;
         }
 
-        .filme-detalhe-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        /* Cards - Sessões */
+        .card-sessao {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(88, 28, 135, 0.4) 100%);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
         }
 
-       /* Cards - Sessões */
-.card-sessao {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(88, 28, 135, 0.4) 100%);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(168, 85, 247, 0.3);
-    border-radius: 16px;
-    padding: 24px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
-}
+        .card-sessao:hover {
+            border-color: rgba(168, 85, 247, 0.6);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
 
-.card-sessao:hover {
-    border-color: rgba(168, 85, 247, 0.6);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
-}
+        .sessao-filme_titulo {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #e0d7ff;
+        }
 
-/* Título da Sessão */
-.sessao-filme {
-    font-size: 20px;
-    font-weight: 700;
-    margin-bottom: 16px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    color: #e0d7ff;
-}
+        .sessao-detalhes {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-bottom: 18px;
+        }
 
-/* Detalhes da Sessão */
-.sessao-detalhes {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-bottom: 18px;
-}
+        .sessao-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 18px;
+            border-top: 1px solid rgba(168, 85, 247, 0.25);
+        }
 
-.sessao-detalhe-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 14px;
-    color: #d8b4fe;
-}
+        .badge {
+            padding: 5px 14px;
+            border-radius: 16px;
+            font-size: 12px;
+            border: 1px solid #c084fc;
+            color: #e0d7ff;
+            background: rgba(168, 85, 247, 0.1);
+            transition: all 0.2s ease;
+        }
 
-/* Footer da Sessão */
-.sessao-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-top: 18px;
-    border-top: 1px solid rgba(168, 85, 247, 0.25);
-}
-
-/* Preço da Sessão */
-.sessao-preco {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #d8b4fe;
-    font-size: 14px;
-    font-weight: 500;
-}
-
-/* Badge */
-.badge {
-    padding: 5px 14px;
-    border-radius: 16px;
-    font-size: 12px;
-    border: 1px solid #c084fc;
-    color: #e0d7ff;
-    background: rgba(168, 85, 247, 0.1);
-    transition: all 0.2s ease;
-}
-
-.badge:hover {
-    background: rgba(168, 85, 247, 0.25);
-    border-color: #c084fc;
-    cursor: pointer;
-}
+        .badge:hover {
+            background: rgba(168, 85, 247, 0.25);
+            border-color: #c084fc;
+            cursor: pointer;
+        }
 
         /* Cards - Ingressos */
         .card-ingresso {
@@ -300,28 +305,6 @@
             overflow: hidden;
         }
 
-        .card-ingresso::before,
-        .card-ingresso::after {
-            content: '';
-            position: absolute;
-            background: rgba(168, 85, 247, 0.1);
-            border-radius: 50%;
-        }
-
-        .card-ingresso::before {
-            width: 120px;
-            height: 120px;
-            top: -60px;
-            right: -60px;
-        }
-
-        .card-ingresso::after {
-            width: 80px;
-            height: 80px;
-            bottom: -40px;
-            left: -40px;
-        }
-
         .ingresso-header {
             display: flex;
             justify-content: space-between;
@@ -329,11 +312,6 @@
             margin-bottom: 20px;
             position: relative;
             z-index: 1;
-        }
-
-        .ingresso-filme {
-            font-size: 20px;
-            font-weight: bold;
         }
 
         .ingresso-horario {
@@ -361,11 +339,6 @@
         .ingresso-detalhe-icon {
             color: #a78bfa;
             font-size: 20px;
-        }
-
-        .ingresso-detalhe-texto {
-            display: flex;
-            flex-direction: column;
         }
 
         .ingresso-label {
@@ -404,80 +377,59 @@
             color: #4ade80;
         }
 
- /* GRID */
-.grid-salas {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 25px;
-    margin-top: 40px;
-}
+        /* Cards - Salas */
+        .card-sala {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 22px 28px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(4px);
+            transition: 0.2s ease;
+        }
 
-/* CARD */
-.card-sala {
-    background: rgba(255, 255, 255, 0.05);
-    padding: 22px 28px;
-    border-radius: 14px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    backdrop-filter: blur(4px);
-    transition: 0.2s ease;
-}
+        .card-sala:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-3px);
+        }
 
-.card-sala:hover {
-    background: rgba(255, 255, 255, 0.08);
-    transform: translateY(-3px);
-}
+        .sala-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-/* TOPO DO CARD */
-.sala-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+        .sala-numero {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+        }
 
-.sala-numero {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: white;
-}
+        .sala-capacidade {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: #4db4ff;
+            font-size: 1.1rem;
+        }
 
-/* Ícone + capacidade */
-.sala-capacidade {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    color: #4db4ff;
-    font-size: 1.1rem;
-}
+        .sala-stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+        }
 
-/* DIVISOR */
-.sala-divider {
-    height: 1px;
-    width: 100%;
-    background: rgba(255, 255, 255, 0.12);
-    margin: 16px 0;
-}
+        .sala-stat-label {
+            font-size: 0.85rem;
+            opacity: 0.75;
+            color: white;
+        }
 
-/* STATS */
-.sala-stats {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 8px;
-}
-
-.sala-stat-label {
-    font-size: 0.85rem;
-    opacity: 0.75;
-    color: white;
-}
-
-.sala-stat-value {
-    font-size: 1.1rem;
-    font-weight: 600;
-    margin-top: 3px;
-    color: #ffffff;
-}
-
-
+        .sala-stat-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 3px;
+            color: #ffffff;
+        }
 
         /* Footer */
         footer {
@@ -517,7 +469,6 @@
             color: #a78bfa;
         }
 
-        /* Icons (usando símbolos Unicode) */
         .icon {
             display: inline-block;
             width: 20px;
@@ -544,18 +495,34 @@
             .grid-salas {
                 grid-template-columns: 1fr;
             }
+
+            .header-content {
+                flex-direction: column;
+                align-items: flex-start;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+
+    <!-- Header com os Botões de Gerenciamento -->
     <header>
         <div class="container">
             <div class="header-content">
-                <div class="logo">🎬</div>
-                <div class="header-text">
-                    <h1>CineMax</h1>
-                    <p>Sistema de Gerenciamento de Cinema</p>
+                <div class="header-left">
+                    <div class="logo">🎬</div>
+                    <div class="header-text">
+                        <h1>CineMax</h1>
+                        <p>Sistema de Gerenciamento de Cinema</p>
+                    </div>
+                </div>
+
+                <!-- Botões para gerir e adicionar -->
+                <div class="admin-buttons">
+                    <a href="/filme/lst" class="btn-admin">Gerir Filmes</a>
+                    <a href="/sessao/lst" class="btn-admin">Gerir Sessões</a>
+                    <a href="/sala/lst" class="btn-admin">Gerir Salas</a>
+                    <a href="/ingresso/lst" class="btn-admin">Gerir Ingressos</a>
                 </div>
             </div>
         </div>
@@ -563,7 +530,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <img src="https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/02/cinema.jpg?w=1200&h=900&crop=0">
+        <img src="https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2024/02/cinema.jpg?w=1200&h=900&crop=0" alt="Cinema Banner">
         <div class="hero-overlay">
             <div class="hero-content">
                 <h2>Bem-vindo ao CineMax</h2>
@@ -586,33 +553,32 @@
             </div>
 
             <div class="grid-filmes">
-                <!-- Filme 1 -->
-<%filmes.forEach(filme=>{%>                     
-    <div class="card-filme">
-                    <div class="filme-poster-container">
-                        <img class="filme-poster" src="<%=filme.foto%>" alt="A Grande Aventura">
-                        <div class="filme-classificacao"><%=filme.classificacao%></div>
-                    </div>
-                    <div class="filme-info">
-                        <div class="filme-titulo"><%=filme.titulo%></div>
-                        <div class="filme-detalhes">
-                            <div class="filme.duracao">
-                                <span class="icon">⏱️</span>
-                                <span><%=filme.duracao%></span>
-                            </div>
-                            <div class="filme.genero">
-                                <span class="icon">🏷️</span>
-                                <span><%=filme.genero%></span>
-                            </div>
-                            <div class="filme.classificacao">
-                                <span class="icon">⭐</span>
-                                <span><%=filme.classificacao%></span>
+                <% filmes.forEach(filme => { %>                    
+                    <div class="card-filme">
+                        <div class="filme-poster-container">
+                            <img class="filme-poster" src="<%= filme.foto %>" alt="<%= filme.titulo %>">
+                            <div class="filme-classificacao"><%= filme.classificacao %></div>
+                        </div>
+                        <div class="filme-info">
+                            <div class="filme-titulo"><%= filme.titulo %></div>
+                            <div class="filme-detalhes">
+                                <div>
+                                    <span class="icon">⏱️</span>
+                                    <span><%= filme.duracao %></span>
+                                </div>
+                                <div>
+                                    <span class="icon">🏷️</span>
+                                    <span><%= filme.genero %></span>
+                                </div>
+                                <div>
+                                    <span class="icon">⭐</span>
+                                    <span><%= filme.classificacao %></span>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <%})%>
+                <% }) %>
+            </div>
         </section>
 
         <!-- SEÇÃO: SESSÕES -->
@@ -626,33 +592,32 @@
             </div>
 
             <div class="grid-sessoes">
-                <!-- Sessão 1 -->
-<%sessoes.forEach(sessao => { %>
-
-                <div class="card-sessao">
-                    <div class="sessao-filme_titulo">
-                        <span>🎬</span>
-                        <span><%=sessao.filme_titulo%></span>
-                    </div>
-                    <div class="sessao-detalhes">
-                        <div class="sessao.sala">
-                            <span class="icon">📍</span>
-                            <span> <%=sessao.sala%></span>
+                <% sessoes.forEach(sessao => { %>
+                    <div class="card-sessao">
+                        <div class="sessao-filme_titulo">
+                            <span>🎬</span>
+                            <span><%= sessao.filme_titulo %></span>
                         </div>
-                        <div class="sessao-data_hora">
-                            <span class="icon">📅</span>
-                            <span><%=sessao.data_hora%></span>
+                        <div class="sessao-detalhes">
+                            <div>
+                                <span class="icon">📍</span>
+                                <span> <%= sessao.sala %></span>
+                            </div>
+                            <div>
+                                <span class="icon">📅</span>
+                                <span><%= sessao.data_hora %></span>
+                            </div>
+                        </div>
+                        <div class="sessao-footer">
+                            <div>
+                                <span>💲</span>
+                                <span><%= sessao.preco %></span>
+                            </div>
+                            <div class="badge">Disponível</div>
                         </div>
                     </div>
-                    <div class="sessao-footer">
-                        <div class="sessao.preco">
-                            <span>💲</span>
-                            <span><%=sessao.preco%></span>
-                        </div>
-                        <div class="badge">Disponível</div>
-                    </div>
-                </div>
-                <%})%>
+                <% }) %>
+            </div>
         </section>
 
         <!-- SEÇÃO: INGRESSOS -->
@@ -665,56 +630,50 @@
                 </div>
             </div>
 
-          <div class="grid-ingressos">
-    <% ingressos.forEach(ingresso => { %>
-    <div class="card-ingressos">
-        
-        <div class="ingresso-header">
-            <div class="ingresso-horario"><%= ingresso.horario %></div>
-        </div>
+            <div class="grid-ingressos">
+                <% ingressos.forEach(ingresso => { %>
+                    <div class="card-ingresso">
+                        <div class="ingresso-header">
+                            <div class="ingresso-horario"><%= ingresso.horario %></div>
+                        </div>
 
-        <div class="ingresso-detalhes">
+                        <div class="ingresso-detalhes">
+                            <div class="ingresso-detalhe-item">
+                                <div class="ingresso-detalhe-icon">#️⃣</div>
+                                <div>
+                                    <div class="ingresso-label">Número</div>
+                                    <div class="ingresso-valor-texto"><%= ingresso.numero_ingresso %></div>
+                                </div>
+                            </div>
 
-            <div class="ingresso-detalhe-item">
-                <div class="ingresso-detalhe-icon">#️⃣</div>
-                <div class="numero_ingresso">
-                    <div class="ingresso-label">Número</div>
-                    <div class="ingresso-valor-texto"><%=ingresso.numero_ingresso %></div>
-                </div>
+                            <div class="ingresso-detalhe-item">
+                                <div class="ingresso-detalhe-icon">👤</div>
+                                <div>
+                                    <div class="ingresso-label">Comprador</div>
+                                    <div class="ingresso-valor-texto"><%= ingresso.nome_comprador %></div>
+                                </div>
+                            </div>
+
+                            <div class="ingresso-detalhe-item">
+                                <div class="ingresso-detalhe-icon">💺</div>
+                                <div>
+                                    <div class="ingresso-label">Assento</div>
+                                    <div class="ingresso-valor-texto"><%= ingresso.assento %></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ingresso-footer">
+                            <div class="ingresso-preco">
+                                <span>💲</span>
+                                <span><%= ingresso.valor %></span>
+                            </div>
+                            <div class="badge-confirmado">Confirmado</div>
+                        </div>
+                    </div>
+                <% }) %>
             </div>
-
-            <div class="ingresso-detalhe-item">
-                <div class="ingresso-detalhe-icon">👤</div>
-                <div class="ingresso-comprador">
-                    <div class="ingresso-label">Comprador</div>
-                    <div class="ingresso-valor-texto"><%= ingresso.nome_comprador %></div>
-                </div>
-            </div>
-
-            <div class="ingresso-detalhe-item">
-                <div class="ingresso-detalhe-icon">💺</div>
-                <div class="ingresso-assento">
-                    <div class="ingresso-label">Assento</div>
-                    <div class="ingresso-valor-texto"><%= ingresso.assento %></div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="ingresso-footer">
-            <div class="ingresso-preco">
-                <span>💲</span>
-                <span><%= ingresso.valor %></span>
-            </div>
-            <div class="badge-confirmado">Confirmado</div>
-        </div>
-
-    </div>
-    <% }) %>
-</div>
         </section>
-
- 
 
         <!-- SEÇÃO: SALAS -->
         <section id="salas">
@@ -726,38 +685,31 @@
                 </div>
             </div>
 
-           <div class="grid-salas">
-    <% salas.forEach(sala => { %>
-    <div class="card-sala">
-        <div class="sala-content">
+            <div class="grid-salas">
+                <% salas.forEach(sala => { %>
+                    <div class="card-sala">
+                        <div class="sala-header">
+                            <div class="sala-numero"><%= sala.numero %></div>
+                            <div class="sala-capacidade">
+                                <span>👥</span>
+                                <span><%= sala.capacidade %></span>
+                            </div>
+                        </div>
 
-            <div class="sala-header">
-                <div class="sala-numero"><%= sala.numero %></div>
-                <div class="sala-capacidade">
-                    <span>👥</span>
-                    <span><%= sala.capacidade %></span>
-                </div>
+                        <div class="sala-stats">
+                            <div>
+                                <div class="sala-stat-label">Capacidade</div>
+                                <div class="sala-stat-value"><%= sala.capacidade %></div>
+                            </div>
+                            <div>
+                                <div class="sala-stat-label">Tipo</div>
+                                <div class="sala-stat-value"><%= sala.tipo %></div>
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
             </div>
-
-            <div class="sala-stats">
-
-                <div>
-                    <div class="sala-stat-label">Capacidade</div>
-                    <div class="sala-stat-value"><%= sala.capacidade %></div>
-                </div>
-
-                <div>
-                    <div class="sala-stat-label">Tipo</div>
-                    <div class="sala-stat-value"><%= sala.tipo %></div>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-    <% }) %>
-</div>
-</section>
+        </section>
 
     </main>
 
@@ -776,7 +728,7 @@
                 </div>
                 <div class="footer-section">
                     <h4>Horário de Funcionamento</h4>
-                    <p>Segunda a Sabado</p>
+                    <p>Segunda a Sábado</p>
                     <p>10:00 - 22:00</p>
                 </div>
             </div>

@@ -1,4 +1,5 @@
 import express from 'express';
+import './config/conexao.js'; 
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
 
@@ -268,8 +269,9 @@ app.get('/site',async (req,res)=> {
 res.render("site/index",{filmes,sessoes,ingressos,salas})
 })
 
+app.listen(3002, () => {
+    console.log("Servidor a correr na porta 3002!");
+});
 
-//FIM ROTAS
-app.listen(3001)
-// Exporta o handler compatível com Vercel
+// IMPORTANTE PARA A VERCEL: Exportar a aplicação Express
 export default app;
